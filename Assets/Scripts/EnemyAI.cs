@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] List<Transform> waypoints;
     private NavMeshAgent _agent;
+    //private LayerMask _isGround, _isPlayer;
     [SerializeField] float smoothRotationTime = 0.2f;
     // Parameter used on the SmoothDampAngle() function to store current velocity during each call
     
@@ -47,13 +48,16 @@ public class EnemyAI : MonoBehaviour
     {
         Vector3 angleDir = new Vector3(_agent.velocity.x, 0f, _agent.velocity.z).normalized;
 
-        float targetAngle = Mathf.Atan2(angleDir.x, angleDir.z) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(
+        if (angleDir.magnitude > 0f)
+        {
+            float targetAngle = Mathf.Atan2(angleDir.x, angleDir.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(
                 transform.eulerAngles.y,
                 targetAngle,
                 ref _smothRotationVelocity,
                 smoothRotationTime);
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        }
     }
 
     private void UpdateDestination()
