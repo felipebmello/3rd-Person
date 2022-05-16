@@ -16,6 +16,7 @@ TODO:
 	- Add input and functionality
 	- Flashlight UI Status
 - Block out a Maze with ProBuilder
+	- Corridors and spaces have to be of length 3 or higher
 	- Tweak Camera to work on smaller spaces/corridors
 	- Add Textures
 	- Determine lighting and light sources for Maze, Flashlight and enemies
