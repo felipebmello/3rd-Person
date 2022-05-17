@@ -58,10 +58,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -8}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_FollowOffset: {x: 0, y: 3, z: -12}
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: 125.18
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -150,7 +150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6738426020887734468}
-  m_LocalRotation: {x: 0.18045606, y: 0.00000002393401, z: -0.000000004391126, w: 0.9835831}
+  m_LocalRotation: {x: 0.058183998, y: 0.8760471, z: -0.10937226, w: 0.46604064}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -258,10 +258,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -8}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_FollowOffset: {x: 0, y: 3, z: -12}
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: 125.18
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -350,7 +350,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6738426021156847415}
-  m_LocalRotation: {x: 0.14460836, y: 0.000000017025526, z: -0.000000002488187, w: 0.98948896}
+  m_LocalRotation: {x: 0.041216686, y: 0.87944186, z: -0.07747771, w: 0.4678466}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -424,7 +424,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6738426021742004310}
-  m_LocalRotation: {x: 0.1594493, y: 0.06261683, z: -0.010134543, w: 0.9851662}
+  m_LocalRotation: {x: 0.04248645, y: 0.9061688, z: -0.0938623, w: 0.41017422}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -577,9 +577,9 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
-    m_InvertInput: 1
+    m_InvertInput: 0
     m_MinValue: -180
-    m_MaxValue: -180
+    m_MaxValue: 180
     m_Wrap: 1
     m_Recentering:
       m_enabled: 0
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: 125.18
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -603,9 +603,9 @@ MonoBehaviour:
   - m_Height: 4.5
     m_Radius: 8
   - m_Height: 3
-    m_Radius: 8
+    m_Radius: 12
   - m_Height: -1.2
-    m_Radius: 6
+    m_Radius: 8
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 6738426020887734469}
@@ -638,8 +638,8 @@ MonoBehaviour:
   m_Strategy: 0
   m_MaximumEffort: 4
   m_SmoothingTime: 0
-  m_Damping: 0
-  m_DampingWhenOccluded: 0
+  m_Damping: 0.2
+  m_DampingWhenOccluded: 0.05
   m_OptimalTargetDistance: 0
 --- !u!114 &6738426021758432018
 MonoBehaviour:
@@ -653,6 +653,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513c32ceff8d2f84b9c2599b76207745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  radiusRunning:
+  - 5
+  - 8
+  - 5
+  smoothSpeed: 5
 --- !u!1 &6738426021918706644
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,10 +717,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -8}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_FollowOffset: {x: 0, y: 3, z: -12}
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -723,7 +729,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: 125.18
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1

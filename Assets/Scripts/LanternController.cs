@@ -25,20 +25,15 @@ public class LanternController : MonoBehaviour
         }
 
         Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            Vector3 mousePos = ray.direction.normalized;
 
-            Quaternion targetRotation = Quaternion.LookRotation(ray.direction);
-            //targetRotation.y = Mathf.Clamp(targetRotation.y , transform.parent.eulerAngles.y-60, transform.parent.eulerAngles.y+60);
-            
-            targetRotation = ReturnAngleWithinLocalBounds(ray, targetRotation);
+        Vector3 mousePos = ray.direction.normalized;
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        Quaternion targetRotation = Quaternion.LookRotation(ray.direction);
+        //targetRotation.y = Mathf.Clamp(targetRotation.y , transform.parent.eulerAngles.y-60, transform.parent.eulerAngles.y+60);
+        
+        targetRotation = ReturnAngleWithinLocalBounds(ray, targetRotation);
 
-           
-
-        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
     }
     
@@ -51,12 +46,12 @@ public class LanternController : MonoBehaviour
         float maxY = transform.parent.eulerAngles.y + MAX_ANGLE_Y;
         float targetAngleY = targetRotation.eulerAngles.y;
 
-        Debug.Log("minY: "+minY+" maxY: "+maxY+" targetY: "+targetRotation.eulerAngles.y);
+        //Debug.Log("minY: "+minY+"parentY: "+transform.parent.eulerAngles.y+" maxY: "+maxY+" targetY: "+targetRotation.eulerAngles.y);
 
         //We then start from the most basic case, when the rotation is completely within bounds
         if (targetRotation.eulerAngles.y < maxY && targetRotation.eulerAngles.y > minY) 
         {
-            Debug.Log("Angle's within both bounds.");
+            //Debug.Log("Angle's within both bounds.");
             return targetRotation;
         } 
         else 
@@ -122,24 +117,24 @@ public class LanternController : MonoBehaviour
                 float angleOffset = 0, oppositeAngle = 180 + transform.parent.eulerAngles.y;
                 if (oppositeAngle > 360) {
                     angleOffset = oppositeAngle - 360;
-                    Debug.Log("(+) Angle Offset Value"+ angleOffset);
+                    //Debug.Log("(+) Angle Offset Value"+ angleOffset);
                 }
                 if (targetRotation.eulerAngles.y > oppositeAngle || targetRotation.eulerAngles.y < transform.parent.eulerAngles.y)
                 {
                     if (oppositeAngle > 360 && targetRotation.eulerAngles.y < angleOffset) 
                     {
-                        Debug.Log("(+) Angle's out of bounds. Returning maxY");
+                        //Debug.Log("(+) Angle's out of bounds. Returning maxY");
                         targetAngleY = maxY;
                     }
                     else 
                     {
-                        Debug.Log("(+) Angle's out of bounds. Returning minY");
+                        //Debug.Log("(+) Angle's out of bounds. Returning minY");
                         targetAngleY = minY;
                     }
                 }
                 else
                 {
-                    Debug.Log("(+) Angle's out of bounds. Returning maxY");
+                    //Debug.Log("(+) Angle's out of bounds. Returning maxY");
                     targetAngleY = maxY;
                 }
                 
@@ -155,6 +150,7 @@ public class LanternController : MonoBehaviour
     {
         foreach (Light l in GetComponentsInChildren<Light>())
         {
+            Debug.Log("Name: "+l.gameObject.name);
             l.enabled = !l.enabled;
         }
     }

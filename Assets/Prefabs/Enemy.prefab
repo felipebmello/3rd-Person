@@ -70,6 +70,9 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   smoothRotationTime: 0.2
 --- !u!1 &2030106997203892370
 GameObject:
