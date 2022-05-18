@@ -5,36 +5,40 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] List<Transform> waypoints;
-    private NavMeshAgent _agent;
-    //private LayerMask _isGround, _isPlayer;
-    [SerializeField] float smoothRotationTime = 0.2f;
+    [SerializeField] List<Transform> patrolWaypoints;
+    
+    [SerializeField] bool isPlayerInSightRange;
+    [SerializeField] bool chaseLight = true;
+    [SerializeField] float sightRange;
     // Parameter used on the SmoothDampAngle() function to store current velocity during each call
+    [SerializeField] float smoothRotationTime = 0.2f;
     
     private Vector3 _target;
+    private NavMeshAgent _agent;
+    private FieldOfView _fov;
     private float _smothRotationVelocity;
-    private int _waypointIndex;
+    private int _patrolWaypointIndex;
 
     void Awake() 
     {
         // Stores reference to the NavMeshAgent component on the Enemy game object (this)
         _agent = gameObject.GetComponent<NavMeshAgent>();
+        _fov = gameObject.GetComponent<FieldOfView>();
     }
     
     // Start is called before the first frame update
     void Start()
     {
-        _waypointIndex = 0;
+        _patrolWaypointIndex = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         EnemyMovement();
-        if (Vector3.Distance(gameObject.transform.position, _target) < 1f)
-        {
-            NextWaypoint();
-        }
+        
+        
     }
 
     private void EnemyMovement()
@@ -42,6 +46,16 @@ public class EnemyAI : MonoBehaviour
 
         UpdateDestination();
         RotateWithMovement();
+        if (Vector3.Distance(gameObject.transform.position, _target) < 1f)
+        {
+            NextWaypoint();
+        }
+    }
+    private void UpdateDestination()
+    {
+        _target = patrolWaypoints[_patrolWaypointIndex].position;
+        _agent.SetDestination(_target);
+        
     }
 
     private void RotateWithMovement()
@@ -60,20 +74,13 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void UpdateDestination()
-    {
-        _target = waypoints[_waypointIndex].position;
-        _agent.SetDestination(_target);
-        
-    }
-
     private void NextWaypoint() 
     {
-        _waypointIndex++;
-        if (_waypointIndex == waypoints.Count) 
+        _patrolWaypointIndex++;
+        if (_patrolWaypointIndex == patrolWaypoints.Count) 
         {
-            _waypointIndex = 0;
-            waypoints.Reverse();
+            _patrolWaypointIndex = 0;
+            patrolWaypoints.Reverse();
         }
     }
 }

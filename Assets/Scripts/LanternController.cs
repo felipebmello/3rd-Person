@@ -62,17 +62,17 @@ public class LanternController : MonoBehaviour
                 minY += 360;
                 if  (targetRotation.eulerAngles.y > minY) 
                 {
-                    Debug.Log("Angle's within negative bounds.");
+                    //Debug.Log("Angle's within negative bounds.");
                     return targetRotation;
                 }
                 //If it's still out of bounds, 
                 if (targetRotation.eulerAngles.y < 180 + transform.parent.eulerAngles.y)
                 {
-                    Debug.Log("(-) Angle's out of bounds. Returning maxY");
+                    //Debug.Log("(-) Angle's out of bounds. Returning maxY");
                     targetAngleY = maxY;
                 } else 
                 {
-                    Debug.Log("(-) Angle's out of bounds. Returning minY");
+                    //Debug.Log("(-) Angle's out of bounds. Returning minY");
                     targetAngleY = minY;
                 }
                 
@@ -82,18 +82,18 @@ public class LanternController : MonoBehaviour
                 maxY -= 360;
                 if (targetRotation.eulerAngles.y < maxY) 
                 {
-                    Debug.Log("Angle's within positive bounds.");
+                    //Debug.Log("Angle's within positive bounds.");
                     return targetRotation;
                 }
                 //If it's still out of bounds, 
                 if (targetRotation.eulerAngles.y < transform.parent.eulerAngles.y - 180) 
                 {
-                    Debug.Log("(360) Angle's out of bounds. Returning maxY");
+                    //Debug.Log("(360) Angle's out of bounds. Returning maxY");
                     targetAngleY = maxY;
                 } else 
                 {
                     
-                    Debug.Log("(360) Angle's out of bounds. Returning minY");
+                    //Debug.Log("(360) Angle's out of bounds. Returning minY");
                     targetAngleY = minY;
                 }
             }
@@ -150,7 +150,7 @@ public class LanternController : MonoBehaviour
     {
         foreach (Light l in GetComponentsInChildren<Light>())
         {
-            Debug.Log("Name: "+l.gameObject.name);
+            //Debug.Log("Name: "+l.gameObject.name);
             l.enabled = !l.enabled;
         }
     }
