@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.Events;
 
-[CustomEditor(typeof(FieldOfView))]
+[CustomEditor(typeof(EnemyFieldOfView))]
 public class FieldOfViewEditor : Editor
 {
-    
     private void OnSceneGUI() {
-        FieldOfView fov = (FieldOfView)target;
+
+        EnemyFieldOfView fov = (EnemyFieldOfView)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.viewRadius);
 
@@ -19,11 +20,13 @@ public class FieldOfViewEditor : Editor
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle1 * fov.viewRadius);
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle2 * fov.viewRadius);
 
-        if (fov.canSeePlayer)
+        if (fov.CanSeePlayer())
         {
             Handles.color = Color.green;
             Handles.DrawLine(fov.transform.position, fov.GetLastKnownTargetPosition());
 
         }
     }
+
+
 }

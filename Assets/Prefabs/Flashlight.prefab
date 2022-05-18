@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2207608109395967648}
   - component: {fileID: 8487709653886980625}
   - component: {fileID: 6917616371781480456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4663300012138627721}
   - component: {fileID: 145601356796242954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light (Focused)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,12 +120,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416092964879378602}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.362, y: 0, z: 0.555}
+  m_LocalRotation: {x: 0.000000007450579, y: 0.00000011920926, z: 0.000000014901158, w: 1}
+  m_LocalPosition: {x: -0.36199993, y: 0, z: 0.5549997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4485222817881073498}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!108 &145601356796242954
 Light:
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 1205883556822524456}
   - component: {fileID: 6203325894771007498}
   - component: {fileID: 1946722903088597926}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lighsource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 8309502635435952820}
   - component: {fileID: 728912634804240924}
   - component: {fileID: 2441820091119337963}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2346,7 +2346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6712178631469376567}
   - component: {fileID: 6712178631469376552}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2439,7 +2439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6712178632234968864}
   - component: {fileID: 6712178632234968865}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2453,13 +2453,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6712178632234968879}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.362, y: 0, z: 0.555}
+  m_LocalRotation: {x: 0.000000007450579, y: 0.00000011920926, z: 0.000000014901158, w: 1}
+  m_LocalPosition: {x: -0.36199993, y: 0, z: 0.5549997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6712178631469376567}
   m_Father: {fileID: 4485222817881073498}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!108 &6712178632234968865
 Light:
@@ -2533,7 +2533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4485222817881073498}
   - component: {fileID: 6712178631115585100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2554,8 +2554,8 @@ Transform:
   - {fileID: 2444698054254000347}
   - {fileID: 62335193941616958}
   - {fileID: 3260407128133160966}
-  - {fileID: 6712178632234968864}
   - {fileID: 4663300012138627721}
+  - {fileID: 6712178632234968864}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -15.204, y: -69.811, z: 0}

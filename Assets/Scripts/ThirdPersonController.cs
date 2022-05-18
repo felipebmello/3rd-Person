@@ -109,7 +109,7 @@ public class ThirdPersonController : MonoBehaviour
     }
     
     private void OnControllerColliderHit(ControllerColliderHit hit) {
-        if (hit.collider.gameObject.tag.Equals("Ground")) {
+        if (hit.gameObject.CompareTag("Ground")) {
             _isGrounded = true;
         }
         

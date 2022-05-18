@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8303468354803215006}
   - component: {fileID: 8303468354803215000}
   - component: {fileID: 8303468354803215007}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 3rd Person Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
   _walkingSpeed: 6
   _runningSpeed: 10
   _jumpSpeed: 2
-  _gravity: 2
+  _gravity: 9.81
   _smoothRotationTime: 0.2
   _isGrounded: 0
 --- !u!1 &8303468355617745391
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 8303468355617745387}
   - component: {fileID: 8303468355617745386}
   - component: {fileID: 8303468355617745385}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8303468356364696313}
   - component: {fileID: 8303468356364696312}
   - component: {fileID: 8303468356364696319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7843561354051532960, guid: e1fd1245468be374c9386a9b1f87a54e, type: 3}
       propertyPath: m_Name
-      value: Lantern
+      value: Flashlight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1fd1245468be374c9386a9b1f87a54e, type: 3}

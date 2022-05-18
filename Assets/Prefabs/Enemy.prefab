@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2030106996714318064}
   - component: {fileID: 975282792}
   - component: {fileID: 975282794}
+  - component: {fileID: 6146547149794796029}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Player
@@ -52,7 +53,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1.2
+  m_BaseOffset: 0.9
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &975282794
@@ -67,13 +68,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166b797b0c6732047a042cba7b878948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  patrolWaypoints: []
+  chaseLight: 1
   smoothRotationTime: 0.2
+  _isStationary: 0
+  chasingMat: {fileID: 2100000, guid: f43a79ca83016674aa9baeb1c9084959, type: 2}
+  idleMat: {fileID: 2100000, guid: 64065773ea19f6d4f85152ff66cb0602, type: 2}
+--- !u!114 &6146547149794796029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030106996714318067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec1c36357fc7024f8818e5f74858583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <viewRadius>k__BackingField: 10
+  <viewAngle>k__BackingField: 120
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &2030106997203892370
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +154,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f43a79ca83016674aa9baeb1c9084959, type: 2}
+  - {fileID: 2100000, guid: 64065773ea19f6d4f85152ff66cb0602, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

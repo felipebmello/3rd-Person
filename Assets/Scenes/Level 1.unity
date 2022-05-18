@@ -8020,6 +8020,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7444247446337354140, guid: d1d818304dbf7b740a5c8a21cabf81eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444247446337354141, guid: d1d818304dbf7b740a5c8a21cabf81eb, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444247446337354141, guid: d1d818304dbf7b740a5c8a21cabf81eb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1d818304dbf7b740a5c8a21cabf81eb, type: 3}
 --- !u!1001 &7477972356140574697
@@ -8096,12 +8108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec1c36357fc7024f8818e5f74858583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 2
-  angle: 0
+  <viewRadius>k__BackingField: 0
+  <viewAngle>k__BackingField: 0
   targetMask:
     serializedVersion: 2
     m_Bits: 256
   obstructionMask:
     serializedVersion: 2
     m_Bits: 0
-  canSeePlayer: 0

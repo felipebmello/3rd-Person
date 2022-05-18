@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LanternController : MonoBehaviour
+public class FlashlightController : MonoBehaviour
 {
     [SerializeField] float rotationSpeed = 10f;
     
     [SerializeField] float MIN_ANGLE_Y = -60f;
     [SerializeField] float MAX_ANGLE_Y = 60f;
 
+    public Transform target { get; protected set; }
+    public Vector3 point { get; protected set; }
     private Camera _cam;
+    private bool isFlashlightOn = false;
 
     void Awake() 
     {
@@ -21,9 +24,9 @@ public class LanternController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            SwitchFlashlight();
+            SwitchFlashlightOnOff();
         }
-
+        
         Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
 
         Vector3 mousePos = ray.direction.normalized;
@@ -34,7 +37,25 @@ public class LanternController : MonoBehaviour
         targetRotation = ReturnAngleWithinLocalBounds(ray, targetRotation);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        
 
+        if (isFlashlightOn && Physics.Raycast(ray, out RaycastHit hit)) {
+            point = hit.point;
+            foreach (Light l in GetComponentsInChildren<Light>())
+            {
+                if (l.type.Equals(LightType.Spot))
+                {
+                    float angleInRadians = Mathf.Deg2Rad * l.spotAngle;
+                    float coneRadius = Mathf.Tan(angleInRadians) * l.range;
+                    FOVServices fov = new FOVServices(coneRadius, 360, 9, 7);
+                    if (fov.CheckFOV(hit.point, transform.forward)) {
+                        target = fov.GetTarget();
+                        Debug.Log("Found the enemy!");
+                    }
+                }
+
+            }
+        }
     }
     
 
@@ -146,12 +167,19 @@ public class LanternController : MonoBehaviour
         }
     }
 
-    private void SwitchFlashlight()
+    private void SwitchFlashlightOnOff()
     {
+        
+        isFlashlightOn = !isFlashlightOn;
         foreach (Light l in GetComponentsInChildren<Light>())
         {
             //Debug.Log("Name: "+l.gameObject.name);
             l.enabled = !l.enabled;
+
         }
+    }
+
+    public bool IsOn () {
+        return isFlashlightOn;
     }
 }
