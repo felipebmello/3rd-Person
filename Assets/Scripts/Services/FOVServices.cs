@@ -9,6 +9,7 @@ public class FOVServices
     public LayerMask targetMask { get; protected set; }
     public LayerMask obstructionMask { get; protected set; }
 
+
     private Transform _target;
     private bool _canSeeTarget;
 

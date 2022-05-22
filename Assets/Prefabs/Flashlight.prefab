@@ -2534,7 +2534,7 @@ GameObject:
   - component: {fileID: 4485222817881073498}
   - component: {fileID: 6712178631115585100}
   m_Layer: 8
-  m_Name: Lantern
+  m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2547,7 +2547,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7843561354051532960}
-  m_LocalRotation: {x: -0.10849148, y: -0.56719524, z: -0.07570018, w: 0.8128891}
+  m_LocalRotation: {x: -0.10849448, y: -0.5671946, z: -0.0757022, w: 0.81288904}
   m_LocalPosition: {x: -0.49999976, y: 0, z: 0.25000006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2558,7 +2558,7 @@ Transform:
   - {fileID: 6712178632234968864}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -15.204, y: -69.811, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6712178631115585100
 MonoBehaviour:
   m_ObjectHideFlags: 0

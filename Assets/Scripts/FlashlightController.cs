@@ -11,6 +11,7 @@ public class FlashlightController : MonoBehaviour
 
     public Transform target { get; protected set; }
     public Vector3 point { get; protected set; }
+    public float coneRadius { get; protected set; }
     private Camera _cam;
     private bool isFlashlightOn = false;
 
@@ -46,7 +47,8 @@ public class FlashlightController : MonoBehaviour
                 if (l.type.Equals(LightType.Spot))
                 {
                     float angleInRadians = Mathf.Deg2Rad * l.spotAngle;
-                    float coneRadius = Mathf.Tan(angleInRadians) * l.range;
+                    coneRadius = Mathf.Tan(angleInRadians) * l.range - ray.direction.magnitude;
+                    //Debug.Log("Cone Radius: "+coneRadius);
                     FOVServices fov = new FOVServices(coneRadius, 360, 9, 7);
                     if (fov.CheckFOV(hit.point, transform.forward)) {
                         target = fov.GetTarget();
@@ -181,5 +183,13 @@ public class FlashlightController : MonoBehaviour
 
     public bool IsOn () {
         return isFlashlightOn;
+    }
+    
+    
+    private void OnDrawGizmosSelected() 
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere (point, coneRadius);
+        
     }
 }

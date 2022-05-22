@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using MovementSystem.PlayerMovement;
 
 public class CinemachinePresenter : MonoBehaviour
 {
 
-    [SerializeField] ThirdPersonController player;
+    //[SerializeField] ThirdPersonController playerC;
+    [SerializeField] PlayerInput playerInput;
 
     [SerializeField] float[] radiusRunning = {5, 8, 5};
     [SerializeField] float smoothSpeed = 5f;
@@ -25,11 +27,13 @@ public class CinemachinePresenter : MonoBehaviour
     
     private void OnEnable() 
     {
-        player.onPlayerRunningAction += UpdateCameraOrbit;
+        //playerC.onPlayerRunningAction += UpdateCameraOrbit;
+        playerInput.onPlayerRunningAction += UpdateCameraOrbit;
     }
     private void OnDisable()
     {
-        player.onPlayerRunningAction -= UpdateCameraOrbit;
+        //playerC.onPlayerRunningAction -= UpdateCameraOrbit;
+        playerInput.onPlayerRunningAction -= UpdateCameraOrbit;
     }
 
         //returns normal call if Mouse 1 (right button) is pressed

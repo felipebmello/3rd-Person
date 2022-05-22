@@ -7,7 +7,8 @@ using UnityEditor.Events;
 [CustomEditor(typeof(EnemyFieldOfView))]
 public class FieldOfViewEditor : Editor
 {
-    private void OnSceneGUI() {
+    private void OnSceneGUI() 
+    {
 
         EnemyFieldOfView fov = (EnemyFieldOfView)target;
         Handles.color = Color.white;
@@ -19,6 +20,7 @@ public class FieldOfViewEditor : Editor
         Handles.color = Color.yellow;
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle1 * fov.viewRadius);
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle2 * fov.viewRadius);
+
 
         if (fov.CanSeePlayer())
         {

@@ -33,5 +33,4 @@ public class FlashlightControllerEditor : Editor
         }*/
     }
 
-
 }
