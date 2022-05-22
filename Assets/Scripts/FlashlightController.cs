@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class FlashlightController : MonoBehaviour
     public float coneRadius { get; protected set; }
     private Camera _cam;
     private bool isFlashlightOn = false;
+    public event Action<bool> onFlashlightSwitchAction;
 
     void Awake() 
     {
@@ -23,9 +25,13 @@ public class FlashlightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Time.timeScale > 0f)
         {
-            SwitchFlashlightOnOff();
+            
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                SwitchFlashlightOnOff();
+            }
         }
         
         Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
@@ -173,6 +179,7 @@ public class FlashlightController : MonoBehaviour
     {
         
         isFlashlightOn = !isFlashlightOn;
+        onFlashlightSwitchAction?.Invoke(isFlashlightOn);
         foreach (Light l in GetComponentsInChildren<Light>())
         {
             //Debug.Log("Name: "+l.gameObject.name);

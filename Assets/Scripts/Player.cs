@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using MovementSystem.PlayerMovement;
 using System;
@@ -31,6 +29,8 @@ public class Player : MonoBehaviour
     public float JumpSpeed { get => _jumpSpeed; set => _jumpSpeed = value; }
     public float Gravity { get => _gravity; set => _gravity = value; }
 
+    public event Action onPlayerWinConditionAction;
+    public event Action onPlayerLoseConditionAction;
     
     private PlayerMovementStateMachine stateMachine;
 
@@ -52,14 +52,24 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        stateMachine.HandleInput();
-        
-        stateMachine.Update();
+        if (Time.timeScale > 0f)
+        {
+            stateMachine.HandleInput();
+            stateMachine.Update();
+        }
     }
 
     
     private void OnControllerColliderHit(ControllerColliderHit hit) {
+        if (hit.gameObject.CompareTag("Goal")) {
+            onPlayerWinConditionAction?.Invoke();
+        }
         stateMachine.OnControllerColliderHit(hit);
+    } 
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Enemy")) {
+            onPlayerLoseConditionAction?.Invoke();
+        }
     }
 
     

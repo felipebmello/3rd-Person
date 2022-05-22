@@ -2,12 +2,14 @@
 
 #### Cinemachine
 #### ProBuilder
+#### TextMeshPro
 
 ## DONE:
 
 #### 3rd person movement controller
 - Running action with left shift
 - Jumping action with spacebar
+- State machine implemented for player movement system
 #### 3rd person camera
 - free movement with right mouse click
 - Camera blends closer when running
@@ -20,6 +22,13 @@
 - Enemy follows player to last seen position
 - Added materials to diferentiate when enemy's chasing
 - returns to patrolling set waypoints or stationary position (upgraded to a stack of waypoints)
+#### UI
+- Added Main Menu screen
+- Added Game Menu screen overlay with Flashlight UI
+- Added Pause Menu screen
+- Added Victory Menu screen
+- State machine implemented for menu system
+
 
 ## IN PROGRESS
 
@@ -37,23 +46,19 @@ but felt the light detection needed to be sorted out before I started working on
 ## TODO:
 
 #### UI
-- Start Menu scene (enter and quit game)
-- Pause Menu scene (quit game)
-- End Game Menu
+- Revamp visuals
+- New flashlight UI icon
 #### Flashlight
 - Add flickering effect
 #### Player
-- Add state machine
 - Add model
 - Add animations
 #### Enemy
 - Add model
 - Add two types of enemies (follows light, runs from light)
-#### Core Game Loop
-- Add a victory condition when colliding with stairs
-- Add losing condition when coliding with enemies
 #### Maze
 - Block out a bigger level
+- Change goal platform to stairs
 - Add textures
 #### SFX
 #### Post-processing effects

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace MovementSystem.PlayerMovement {
 
     public class PlayerIdlingState : PlayerMovementState
