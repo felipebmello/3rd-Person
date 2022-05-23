@@ -4,6 +4,9 @@
 #### ProBuilder
 #### TextMeshPro
 
+## Assets used
+Flashlight Icon by Daniel Bruce on IconScout
+
 ## DONE:
 
 #### 3rd person movement controller
@@ -15,7 +18,8 @@
 - Camera blends closer when running
 #### Flashlight
 - turns on and off with left mouse click
-- follows mouse position up to a certain degree
+- follows mouse position up to a maximum angle determined by the player's field of view component
+- casts sphere on the spotlight to detect enemies within range / hit by the light
 #### Enemy 
 - NavMeshAgents and patrolling routes
 - FOV that detects the player (visible on the inspector)
@@ -24,7 +28,7 @@
 - returns to patrolling set waypoints or stationary position (upgraded to a stack of waypoints)
 #### UI
 - Added Main Menu screen
-- Added Game Menu screen overlay with Flashlight UI
+- Added Game Menu screen overlay with Flashlight UI icon
 - Added Pause Menu screen
 - Added Victory Menu screen
 - State machine implemented for menu system
@@ -32,13 +36,6 @@
 
 ## IN PROGRESS
 
-#### Flashlight
-- reused logic from Enemy FOV to create a sphere/raycast at the center of the spotlight 
-to detect enemies in range, still in the process of creating gizmos to properly test the 
-correct positions
-- I'll probably rework the way the flashlight's direction angle is calculated in relation 
-to the mouse position, reusing the logic used to create the field of view cone on enemies
-- Add a cone of light to the spotlights
 #### Enemy
 - I've started implementing Behaviour Trees to separate the two types of enemies, 
 but felt the light detection needed to be sorted out before I started working on individual nodes
@@ -47,7 +44,6 @@ but felt the light detection needed to be sorted out before I started working on
 
 #### UI
 - Revamp visuals
-- New flashlight UI icon
 #### Flashlight
 - Add flickering effect
 #### Player

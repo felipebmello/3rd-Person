@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFieldOfView : MonoBehaviour
+public class FieldOfView : MonoBehaviour
 {
     [field: Header("Field of View Values")]
     [field: SerializeField] public float viewRadius { get; protected set; }
+
     [field: Range(0, 360)]
     [field: SerializeField]  public float viewAngle { get; protected set; }
+    [field: Range(0, 1)]
+    [field: SerializeField]  public float delay { get; protected set; }
 
 
     [field: Header("Layer Masks")]
@@ -16,27 +19,20 @@ public class EnemyFieldOfView : MonoBehaviour
     [field: SerializeField] public LayerMask obstructionMask;
 
     private Transform _target;
-    private bool _canSeeTarget;
+    private bool _canSeeTarget = false;
+    private FieldOfViewServices fov;
     public event Action<Vector3> onTargetWithinRangeAction;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        FOVServices fov = new FOVServices(viewRadius, viewAngle, targetMask, obstructionMask);
-        StartCoroutine(CheckWithDelay(fov));
+        fov = new FieldOfViewServices(viewRadius, viewAngle, targetMask, obstructionMask);
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator CheckWithDelay()
     {
-        
-    }
-
-    private IEnumerator CheckWithDelay(FOVServices fov)
-    {
-        float delay = 0.2f;
         while (true) 
         {
             yield return new WaitForSeconds (delay);
@@ -58,7 +54,36 @@ public class EnemyFieldOfView : MonoBehaviour
     {
         return _target.position;
     }
-    public bool CanSeePlayer () {
+    public bool CanSeeTarget () {
         return _canSeeTarget;
+    }
+
+    public ViewCastInfo ViewCast (Vector3 origin, float globalAngle) {
+        Vector3 direction = DirectionFromAngle(globalAngle, true);
+        if (Physics.Raycast(origin, 
+                            direction, 
+                            out RaycastHit hit, 
+                            viewRadius, 
+                            obstructionMask)){
+
+            return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
+        }
+        else {
+            return new ViewCastInfo(false, origin + direction * viewRadius, viewRadius, globalAngle);
+        }
+    }
+
+    public struct ViewCastInfo {
+        public bool hit;
+        public Vector3 point;
+        public float distance;
+        public float angle;
+
+        public ViewCastInfo (bool hit, Vector3 point, float distance, float angle) {
+            this.hit = hit;
+            this.point = point;
+            this.distance = distance;
+            this.angle = angle;
+        }
     }
 }

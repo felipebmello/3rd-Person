@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(FlashlightController))]
-public class FlashlightControllerEditor : Editor
+[CustomEditor(typeof(Flashlight))]
+public class FlashlightEditor : Editor
 {
     private void OnSceneGUI() {
 
-        FlashlightController flashlight = (FlashlightController)target;
+        Flashlight flashlight = (Flashlight)target;
         /*
         Handles.color = Color.white;
         
@@ -17,9 +17,11 @@ public class FlashlightControllerEditor : Editor
         Vector3 viewAngle2 = flashlight.DirectionFromAngle(flashlight.viewAngle/2, false);
         
         */
-
+        
         Handles.color = Color.blue;
-        if (flashlight.IsOn()) Handles.DrawLine(flashlight.transform.position, flashlight.point);
+        if (flashlight.IsOn) {
+            Handles.DrawLine(flashlight.transform.position, flashlight.hit.point);
+        }
 
         /*
         Handles.DrawLine(flashlight.transform.position, flashlight.transform.position + viewAngle1 * flashlight.viewRadius);

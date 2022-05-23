@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
 {
     
     [SerializeField] List<Transform> patrolWaypoints;
-    [SerializeField] bool chaseLight = true;
+    [SerializeField] bool afraidOfLight = true;
     // Parameter used on the SmoothDampAngle() function to store current velocity during each call
     [SerializeField] float smoothRotationTime = 0.2f;
     
@@ -17,9 +17,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] bool _isStationary;
     [SerializeField] Material chasingMat;
     [SerializeField] Material idleMat;
+    [SerializeField] Flashlight flashlight;
     private NavMeshAgent _agent;
-    private EnemyFieldOfView _fov;
+    private FieldOfView _fov;
     private bool _seenPlayer;
+    private bool _isAfraid = false;
     private float _smothRotationVelocity;
 
 
@@ -27,23 +29,37 @@ public class EnemyAI : MonoBehaviour
     {
         // Stores reference to the NavMeshAgent component on the Enemy game object (this)
         _agent = gameObject.GetComponent<NavMeshAgent>();
-        _fov = gameObject.GetComponent<EnemyFieldOfView>();
+        _fov = gameObject.GetComponent<FieldOfView>();
         _targets = new Stack<Vector3>();
         _mesh = gameObject.GetComponentInChildren<MeshRenderer>();
+        
     }
     private void OnEnable() 
     {
-        _fov.onTargetWithinRangeAction += LookForTarget;
+        
+        if (afraidOfLight) {
+            flashlight.onEnemyHitByLightAction += RunFromTarget;
+            _fov.onTargetWithinRangeAction += LookForTarget;
+        }
+        else {
+            flashlight.onEnemyHitByLightAction += LookForTarget;
+        }
     }
+
     private void OnDisable() 
     {
-        _fov.onTargetWithinRangeAction -= LookForTarget;
+        if (afraidOfLight)  {
+            _fov.onTargetWithinRangeAction -= LookForTarget;
+            flashlight.onEnemyHitByLightAction -= RunFromTarget;
+        }
+        else flashlight.onEnemyHitByLightAction -= LookForTarget;
     }
     // Start is called before the first frame update
     void Start()
     {
         _mesh.material = idleMat;
         InitializeWaypointStack();
+        StartCoroutine(_fov.CheckWithDelay());
     }
 
     private void InitializeWaypointStack()
@@ -70,19 +86,32 @@ public class EnemyAI : MonoBehaviour
 
     private void LookForTarget(Vector3 target)
     {
-        
         _isStationary = false;
         if (_seenPlayer) 
         {
             _targets.Pop();
+            Debug.Log(_targets.Peek());
         }
         else 
         {
             _targets.Push(transform.position);
             _mesh.material = chasingMat;
         }
+        Debug.Log(" current Position "+transform.position);
         _targets.Push(target);
         _seenPlayer = true;
+    }
+
+    private void RunFromTarget(Vector3 target)
+    {
+        Debug.Log("RunFromTarget Behaviour not implemented!");
+        /*if (_isAfraid) return;
+        if (!_seenPlayer) _isAfraid = true;
+        if (_seenPlayer) 
+        {
+            _targets.Pop();
+        }
+        _mesh.material = idleMat;*/
     }
 
     private void EnemyMovement()
@@ -118,6 +147,7 @@ public class EnemyAI : MonoBehaviour
 
     private void NextWaypoint() 
     {
+        Debug.Log(_targets.Peek()+" current Position "+transform.position);
         _targets.Pop();
         _seenPlayer = false;
         _mesh.material = idleMat;

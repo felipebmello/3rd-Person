@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MenuSystem {
     
@@ -17,22 +15,22 @@ namespace MenuSystem {
     {
         [field: Header("UI Canvas Reference")]
         [field: SerializeField] public Canvas[] UICanvas { get; private set; }
-        [field: SerializeField] public TMP_Text flashlightUI { get; private set; }
+        [field: SerializeField] public Image flashlightOnUI { get; private set; }
+        [field: SerializeField] public Player player { get; private set; }
+        [field: SerializeField] public Flashlight flashlight { get; private set; }
         
         private MenuStateMachine stateMachine;
+        private bool _isFlashlightOn;
         
-
-
-
         void Awake()
         {
             stateMachine = new MenuStateMachine(this);
-            FindObjectOfType<FlashlightController>().onFlashlightSwitchAction += OnFlashlightToggle;
-            FindObjectOfType<Player>().onPlayerWinConditionAction += OnWinningLevel;
-            FindObjectOfType<Player>().onPlayerLoseConditionAction += OnLosingLevel;
+            player.onPlayerWinConditionAction += OnWinningLevel;
+            player.onPlayerLoseConditionAction += OnLosingLevel;
         }
 
         void Start() {
+            flashlight.input.onFlashlightSwitchAction += OnFlashlightToggle;
             stateMachine.ChangeState(stateMachine.mainMenuState);
         }
 
@@ -66,9 +64,9 @@ namespace MenuSystem {
         }public virtual void OnLosingLevel () {
             stateMachine.RestartGame();
         }
-        public virtual void OnFlashlightToggle(bool isOn) {
-            if (isOn) flashlightUI.color = Color.yellow;
-            else flashlightUI.color = Color.white;
+        public virtual void OnFlashlightToggle() {
+            _isFlashlightOn = !_isFlashlightOn;
+            flashlightOnUI.gameObject.SetActive(_isFlashlightOn);
         }
     }
 }

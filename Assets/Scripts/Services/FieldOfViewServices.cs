@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FOVServices
+public class FieldOfViewServices
 {
     public float viewRadius { get; protected set; }
     public float viewAngle { get; protected set; }
@@ -12,8 +12,8 @@ public class FOVServices
 
     private Transform _target;
     private bool _canSeeTarget;
-
-    public FOVServices(float viewRadius, float viewAngle, LayerMask targetMask, LayerMask obstructionMask)
+ 
+    public FieldOfViewServices(float viewRadius, float viewAngle, LayerMask targetMask, LayerMask obstructionMask)
     {
         this.viewRadius = viewRadius;
         this.viewAngle = viewAngle;
@@ -43,6 +43,8 @@ public class FOVServices
         else if (_canSeeTarget) _canSeeTarget = false;
         return _canSeeTarget;
     }
+
+    
 
     public Transform GetTarget() 
     {
