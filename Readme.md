@@ -37,8 +37,7 @@ Flashlight Icon by Daniel Bruce on IconScout
 ## IN PROGRESS
 
 #### Enemy
-- I've started implementing Behaviour Trees to separate the two types of enemies, 
-but felt the light detection needed to be sorted out before I started working on individual nodes
+- Behaviour tree for Enemy #2 (Has FOV, runs from light) needs only minor adjustments to the AI's behaviour when running away.
 
 ## TODO:
 
@@ -51,10 +50,9 @@ but felt the light detection needed to be sorted out before I started working on
 - Add animations
 #### Enemy
 - Add model
-- Add two types of enemies (follows light, runs from light)
+- Behaviour tree for Enemy #1 (No FOV, runs towards light).
 #### Maze
-- Block out a bigger level
-- Change goal platform to stairs
+- Block out a maze level
 - Add textures
 #### SFX
 #### Post-processing effects

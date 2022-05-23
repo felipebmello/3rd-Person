@@ -7,7 +7,6 @@ public class FieldOfView : MonoBehaviour
 {
     [field: Header("Field of View Values")]
     [field: SerializeField] public float viewRadius { get; protected set; }
-
     [field: Range(0, 360)]
     [field: SerializeField]  public float viewAngle { get; protected set; }
     [field: Range(0, 1)]
@@ -20,14 +19,14 @@ public class FieldOfView : MonoBehaviour
 
     private Transform _target;
     private bool _canSeeTarget = false;
-    private FieldOfViewServices fov;
+    private FieldOfViewServices fovServices;
     public event Action<Vector3> onTargetWithinRangeAction;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        fov = new FieldOfViewServices(viewRadius, viewAngle, targetMask, obstructionMask);
+        fovServices = new FieldOfViewServices(viewRadius, viewAngle, targetMask, obstructionMask);
         
     }
 
@@ -36,10 +35,10 @@ public class FieldOfView : MonoBehaviour
         while (true) 
         {
             yield return new WaitForSeconds (delay);
-            _canSeeTarget = fov.CheckFOV(transform.position, transform.forward);
+            _canSeeTarget = fovServices.CheckFOV(transform.position, transform.forward);
             if (_canSeeTarget) 
             {
-                _target = fov.GetTarget();
+                _target = fovServices.GetTarget();
                 onTargetWithinRangeAction.Invoke(_target.position);
             }
         }
@@ -56,34 +55,5 @@ public class FieldOfView : MonoBehaviour
     }
     public bool CanSeeTarget () {
         return _canSeeTarget;
-    }
-
-    public ViewCastInfo ViewCast (Vector3 origin, float globalAngle) {
-        Vector3 direction = DirectionFromAngle(globalAngle, true);
-        if (Physics.Raycast(origin, 
-                            direction, 
-                            out RaycastHit hit, 
-                            viewRadius, 
-                            obstructionMask)){
-
-            return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
-        }
-        else {
-            return new ViewCastInfo(false, origin + direction * viewRadius, viewRadius, globalAngle);
-        }
-    }
-
-    public struct ViewCastInfo {
-        public bool hit;
-        public Vector3 point;
-        public float distance;
-        public float angle;
-
-        public ViewCastInfo (bool hit, Vector3 point, float distance, float angle) {
-            this.hit = hit;
-            this.point = point;
-            this.distance = distance;
-            this.angle = angle;
-        }
     }
 }

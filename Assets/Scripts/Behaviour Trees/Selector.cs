@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Selector : Node
 {
     protected List<Node> _nodes = new List<Node>();
     public Selector(List<Node> nodes)
     {
+        Debug.Log("Name:"+this.GetType());
         _nodes = nodes;
     }
 
@@ -17,7 +19,7 @@ public class Selector : Node
                     _nodeState = NodeState.RUNNING;
                     return _nodeState;
                 case NodeState.SUCCESS:
-                    _nodeState = NodeState.RUNNING;
+                    _nodeState = NodeState.SUCCESS;
                     return _nodeState;
                 case NodeState.FAILURE:
                     break;

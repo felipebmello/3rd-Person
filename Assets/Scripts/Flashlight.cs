@@ -15,7 +15,9 @@ public class Flashlight : MonoBehaviour
     public FieldOfView playerFOV {get; protected set; }
     public bool IsOn { get => isOn; private set => isOn = value; }
     public RaycastHit hit {get; private set; }
+    public bool isHittingPlayer {get; private set; }
     public event Action<Vector3> onEnemyHitByLightAction;
+    public event Action onEnemyLeftLightAction;
 
     private bool isOn = false;
 
@@ -52,7 +54,11 @@ public class Flashlight : MonoBehaviour
                             transform.forward, 
                             out RaycastHit hit, playerFOV.obstructionMask))
         {
-            if (hit.distance > 20f) return;
+            if (hit.distance > 20f) 
+            {
+                onEnemyLeftLightAction?.Invoke();
+                return;
+            }
             this.hit = hit;
             FieldOfViewServices spotFOV = new FieldOfViewServices(
                                         this.hit.distance / coneRadiusModifier,
@@ -62,8 +68,10 @@ public class Flashlight : MonoBehaviour
             if (spotFOV.CheckFOV(hit.point, transform.forward)) {
                 onEnemyHitByLightAction?.Invoke(transform.parent.transform.position);
                 Debug.Log("Hit "+spotFOV.GetTarget().name+"!!!");
-            }      
+                return;
+            }  
         }
+        onEnemyLeftLightAction?.Invoke();
     }
 
     
