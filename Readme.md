@@ -21,11 +21,14 @@ Flashlight Icon by Daniel Bruce on IconScout
 - follows mouse position up to a maximum angle determined by the player's field of view component
 - casts sphere on the spotlight to detect enemies within range / hit by the light
 #### Enemy 
-- NavMeshAgents and patrolling routes
+- NavMeshAgents
 - FOV that detects the player (visible on the inspector)
 - Enemy follows player to last seen position
 - Added materials to diferentiate when enemy's chasing
-- returns to patrolling set waypoints or stationary position (upgraded to a stack of waypoints)
+- Added Behaviour Trees for Enemies Type #1 and #2
+    - Has FOV, chases players and is afraid of light
+    - Doesn't have FOV, chases light
+- Removed patrolling behaviour due to poor performance and weird movements
 #### UI
 - Added Main Menu screen
 - Added Game Menu screen overlay with Flashlight UI icon
@@ -36,8 +39,8 @@ Flashlight Icon by Daniel Bruce on IconScout
 
 ## IN PROGRESS
 
-#### Enemy
-- Behaviour tree for Enemy #2 (Has FOV, runs from light) needs only minor adjustments to the AI's behaviour when running away.
+#### Maze
+- Blocking out a new maze for testing
 
 ## TODO:
 
@@ -50,7 +53,6 @@ Flashlight Icon by Daniel Bruce on IconScout
 - Add animations
 #### Enemy
 - Add model
-- Behaviour tree for Enemy #1 (No FOV, runs towards light).
 #### Maze
 - Block out a maze level
 - Add textures
