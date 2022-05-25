@@ -5,23 +5,23 @@ using UnityEngine;
 public class MoveNode : Node
 {
     protected Vector3 target;
-    protected EnemyAITree ai;
+    protected EnemyAI ai;
 
-    public MoveNode(EnemyAITree ai)
+    public MoveNode(EnemyAI ai)
     {
         this.ai = ai;
     }
 
     public override NodeState Evaluate()
     {
-        if (Vector3.Distance(target, ai.transform.position) > 0.2f) {
-            ai.Move();
+        Debug.Log(this.GetType());
+        if (Vector3.Distance(target, ai.transform.position) > 0.5f) {
+            ai.Move(target);
             ai.RotateWithMovement();
             return NodeState.RUNNING;
         }
         else
         {
-            ai.RemovePositionFromStack();
             return NodeState.SUCCESS;
         }
     }

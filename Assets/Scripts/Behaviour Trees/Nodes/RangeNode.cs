@@ -5,22 +5,24 @@ using UnityEngine;
 public class RangeNode : Node
 {
     
-    private EnemyAITree ai;
+    private EnemyAI ai;
 
 
-    public RangeNode(EnemyAITree ai)
+    public RangeNode(EnemyAI ai)
     {
         this.ai = ai;
     }
 
     public override NodeState Evaluate()
     {
+        Debug.Log(this.GetType()+" returns "+ai.fov.CanSeeTarget());
         if (ai.fov.CanSeeTarget()) 
         {
-            ai.AddPositionToStack(ai.transform.position);
-            ai.ChasingPlayer();
             return NodeState.SUCCESS;
         }
-        else return NodeState.FAILURE;
+        else 
+        {
+            return NodeState.FAILURE;
+        }
     }
 }

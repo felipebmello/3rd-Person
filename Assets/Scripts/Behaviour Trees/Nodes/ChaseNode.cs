@@ -5,14 +5,15 @@ using UnityEngine.AI;
 public class ChaseNode : MoveNode
 {
 
-    public ChaseNode(EnemyAITree ai) : base (ai)
+    public ChaseNode(EnemyAI ai) : base (ai)
     {
     }
 
     public override NodeState Evaluate()
     {
+        this.GetType();
+        ai.ChasingPlayer();
         target = ai.GetPlayerLastKnownPosition();
-        ai.AddPositionToStack(target);
         return base.Evaluate();
     }
 }

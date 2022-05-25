@@ -5,15 +5,16 @@ using UnityEngine.AI;
 
 public class IsCoverAvailableNode : Node
 {
-    private EnemyAITree ai;
+    private EnemyAI ai;
 
-    public IsCoverAvailableNode(EnemyAITree ai)
+    public IsCoverAvailableNode(EnemyAI ai)
     {
         this.ai = ai;
     }
 
     public override NodeState Evaluate()
     {
+        Debug.Log(this.GetType());
         Vector3 hidingSpot = FindCover();
         ai.SetHidingSpot(hidingSpot);
         if (hidingSpot != Vector3.zero) 

@@ -5,12 +5,14 @@ using UnityEngine;
 public class PatrolNode : MoveNode
 {
 
-    public PatrolNode (EnemyAITree ai) : base (ai)
+    public PatrolNode (EnemyAI ai) : base (ai)
     {
     }
 
     public override NodeState Evaluate()
     {
+        Debug.Log(this.GetType());
+        target = ai.GetTargets().Pop();
         return base.Evaluate();
     }
 }

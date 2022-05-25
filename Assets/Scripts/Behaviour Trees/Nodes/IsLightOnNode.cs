@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsHitByLightNode : Node
+public class IsLightOnNode : Node
 {
 
     private EnemyAI ai;
 
-    public IsHitByLightNode(EnemyAI ai)
+    public IsLightOnNode(EnemyAI ai)
     {
         this.ai = ai;
     }
@@ -15,7 +15,10 @@ public class IsHitByLightNode : Node
     public override NodeState Evaluate()
     {
         Debug.Log(this.GetType()+" returns "+ai.CheckHitByLight());
-        if (ai.CheckHitByLight()) return NodeState.SUCCESS;
-        else return NodeState.FAILURE;
+        if (ai.CheckLightOn()) return NodeState.SUCCESS;
+        else 
+        {
+            return NodeState.FAILURE;
+        }
     }
 }

@@ -5,22 +5,26 @@ using UnityEngine;
 public class IsCoveredNode : Node
 {
 
-    private Vector3 targetPosition;
-    private EnemyAITree ai;
+    private Transform targetPlayer;
+    private EnemyAI ai;
 
-    public IsCoveredNode(EnemyAITree ai)
+    public IsCoveredNode(EnemyAI ai, Transform targetPlayer)
     {
         this.ai = ai;
+        this.targetPlayer = targetPlayer;
     }
 
     public override NodeState Evaluate()
     {
-        targetPosition = ai.GetPlayerLastKnownPosition();
+        Debug.Log(this.GetType());
+        ai.SetIdleMaterial();
         RaycastHit hit;
-        if (Physics.Raycast(ai.transform.position, targetPosition - ai.transform.position, out hit))
+        if (Physics.Raycast(ai.transform.position, (targetPlayer.position - ai.transform.position), out hit))
         {
+            Debug.DrawLine (ai.transform.position, targetPlayer.position );
             if (!hit.collider.transform.CompareTag("Player")) 
             {
+                //add a timer? or maybe make the light permanently keep the enemy hidden.
                 ai.HidingInCover();
                 return NodeState.SUCCESS;
             }

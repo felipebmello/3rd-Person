@@ -4,15 +4,15 @@ using UnityEngine.AI;
 
 public class GoToCoverNode : MoveNode
 {
-    public GoToCoverNode(EnemyAITree ai) : base (ai)
+    public GoToCoverNode(EnemyAI ai) : base (ai)
     {
     }
 
     public override NodeState Evaluate()
     {
+        Debug.Log(this.GetType()+" "+ai.GetTargets().Count);
         target = ai.GetHidingSpot();
         if (target == Vector3.zero) return NodeState.FAILURE;
-        ai.AddPositionToStack(target);
         return base.Evaluate();
     }
 }

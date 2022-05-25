@@ -16,7 +16,7 @@ public class Flashlight : MonoBehaviour
     public bool IsOn { get => isOn; private set => isOn = value; }
     public RaycastHit hit {get; private set; }
     public bool isHittingPlayer {get; private set; }
-    public event Action<Vector3> onEnemyHitByLightAction;
+    public event Action<Vector3, Collider> onEnemyHitByLightAction;
     public event Action onEnemyLeftLightAction;
 
     private bool isOn = false;
@@ -66,7 +66,7 @@ public class Flashlight : MonoBehaviour
                                         playerFOV.targetMask,
                                         playerFOV.obstructionMask);
             if (spotFOV.CheckFOV(hit.point, transform.forward)) {
-                onEnemyHitByLightAction?.Invoke(transform.parent.transform.position);
+                onEnemyHitByLightAction?.Invoke(transform.parent.transform.position, hit.collider);
                 Debug.Log("Hit "+spotFOV.GetTarget().name+"!!!");
                 return;
             }  

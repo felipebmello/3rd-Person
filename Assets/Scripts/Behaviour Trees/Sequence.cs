@@ -6,7 +6,6 @@ public class Sequence : Node
     protected List<Node> _nodes = new List<Node>();
     public Sequence(List<Node> nodes)
     {
-        Debug.Log("Name:"+this.GetType());
         _nodes = nodes;
     }
 
