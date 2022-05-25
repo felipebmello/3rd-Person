@@ -1,3 +1,13 @@
+## Controls:
+
+#### Press 'WASD' to move
+#### Press 'Shift' to run
+#### Press 'Space to jump
+#### Press 'Left Mouse Button' to turn flashlight on/off
+#### Press 'Right Mouse Button' to turn rotate the camera around
+#### Use the mouse to direct your flashlight input
+#### Press 'Esc' to pause the game
+
 ## Packages used:
 
 #### Cinemachine
@@ -35,17 +45,16 @@ Flashlight Icon by Daniel Bruce on IconScout
 - Added Pause Menu screen
 - Added Victory Menu screen
 - State machine implemented for menu system
+#### Level Design
+- Blocked out a maze
+- Removed other
 
-
-## IN PROGRESS
-
-#### Maze
-- Blocking out a new maze for testing
-
-## TODO:
+## BACKLOG:
 
 #### UI
 - Revamp visuals
+- Add an Instructions Menu
+- Use multiple scenes and MenuManager.cs singleton
 #### Flashlight
 - Add flickering effect
 #### Player
@@ -53,8 +62,8 @@ Flashlight Icon by Daniel Bruce on IconScout
 - Add animations
 #### Enemy
 - Add model
+- Rework patrol behaviour
 #### Maze
-- Block out a maze level
 - Add textures
 #### SFX
 #### Post-processing effects
