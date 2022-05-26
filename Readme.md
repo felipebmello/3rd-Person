@@ -8,6 +8,10 @@
 #### Use the mouse to direct your flashlight input
 #### Press 'Esc' to pause the game
 
+## Executable:
+
+https://felipemello.itch.io/3rd-person-prototype?password=testeunityrisestudio
+
 ## Packages used:
 
 #### Cinemachine
